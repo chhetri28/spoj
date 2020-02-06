@@ -1,37 +1,27 @@
-
-
-#include <iostream>
-#include <string>
+#include<bits/stdc++.h>
 using namespace std;
-
-int main () {
-	string snumx, snumy, tmp;
-	int lx, ly, c = 0;
-	int nx[255] = {0}, ny[255] = {0}, ans[550] = {0};
-	while (cin >> snumx >> snumy) {
-		lx = snumx.length();
-		ly = snumy.length();
-		for (int i = 0; i < lx; i++)
-			nx[lx - (i + 1)] = snumx[i] - 48;
-		for (int i = 0; i < ly; i++)
-			ny[ly - (i + 1)] = snumy[i] - 48;
-		for (int i = 0; i < ly; i++) {
-			for (int j = 0; j < lx; j++) {
-				c = i + j;
-				ans[c] += nx[j] * ny[i];
-				while (ans[c] / 10 != 0) {
-					ans[c + 1] += ans[c] / 10;
-					ans[c] %= 10;
-					c++;
-				}
+const int maxi=600;
+int main(){
+	string s1,s2;
+	while(cin>>s1){
+		cin>>s2;
+		reverse(s1.begin(),s.end());
+		reverse(s1.begin(),s.end());
+		int a[maxi];
+		memset(a,0,sizeof(a));
+		for(int i=0;i<s1.length();i++){
+			for(int j=0;j<s2.length();j++){
+				a[i+j]+=(s1[i]-'0')*(s2[j]-'0');
 			}
 		}
-		if (snumx == "0" || snumy == "0")
-			c = 0;
-		for (int i = c; i >= 0; i--) {
-			cout << ans[i];
-			ans[i] = 0;
+		for(int i=0;i<maxi-1;i++){
+			a[i+1]+=a[i]/10;
+			a[i]%=10;
 		}
-		cout << endl;
+		int i=maxi-1;
+		while(i>0 and a[i]==0)i--;
+		for(;i>=0;i--)cout<<a[i];
+		cout<<endl;
 	}
+	return 0;
 }
